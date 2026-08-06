@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import WorkItem from '../../components/WorkItem.astro';
+import { getCollection } from 'astro:content';
+
+const works = (await getCollection('works')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout title="作品" description="Rinngo Lab 全部 AI 编程作品">
+  <Header slot="header" />
+
+  <section class="container page">
+    <header class="page-head rise">
+      <h1>作品</h1>
+      <p>可运行、可讲述、可复盘的 AI 协作实践。</p>
+    </header>
+    <div class="list">
+      {works.map((work, i) => <WorkItem work={work} index={i} />)}
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .page {
+    padding: 3rem 0 2rem;
+  }
+
+  .page-head {
+    margin-bottom: 1.75rem;
+  }
+
+  h1 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+  }
+
+  .page-head p {
+    margin: 0;
+    color: var(--ink-muted);
+  }
+</style>

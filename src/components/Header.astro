@@ -1,0 +1,121 @@
+---
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const base = import.meta.env.BASE_URL;
+const homePath = base.replace(/\/$/, '') || '/';
+
+const links = [
+  {
+    href: base,
+    label: '首页',
+    active: pathname === homePath || pathname === '/',
+  },
+  {
+    href: `${base}works/`,
+    label: '作品',
+    active: pathname.includes('/works'),
+  },
+  {
+    href: `${base}blog/`,
+    label: '博客',
+    active: pathname.includes('/blog'),
+  },
+  {
+    href: `${base}about/`,
+    label: '关于',
+    active: pathname.includes('/about'),
+  },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={base}>
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">Rinngo Lab</span>
+    </a>
+    <nav aria-label="主导航">
+      <ul>
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href} aria-current={link.active ? 'page' : undefined}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--bg) 84%, transparent);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+  }
+
+  .brand-mark {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+  }
+
+  nav ul {
+    display: flex;
+    gap: 0.2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 0.4rem 0.7rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-radius: var(--radius);
+  }
+
+  nav a:hover,
+  nav a[aria-current='page'] {
+    color: var(--ink);
+    background: var(--accent-soft);
+  }
+
+  @media (max-width: 560px) {
+    .header-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      padding-block: 0.85rem;
+    }
+
+    nav ul {
+      flex-wrap: wrap;
+    }
+  }
+</style>

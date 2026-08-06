@@ -1,0 +1,57 @@
+---
+const year = new Date().getFullYear();
+const base = import.meta.env.BASE_URL;
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>
+      <strong>Rinngo Lab</strong>
+      · 用 AI 协作，把想法做成可运行的作品
+    </p>
+    <p class="meta">
+      <a href="https://github.com/Rinngo01" target="_blank" rel="noreferrer">GitHub</a>
+      <span aria-hidden="true">·</span>
+      <a href={`${base}about/`}>关于</a>
+      <span aria-hidden="true">·</span>
+      <span>© {year}</span>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 5rem;
+    border-top: 1px solid var(--line);
+    padding: 2rem 0 2.5rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  a {
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--accent);
+  }
+</style>

@@ -1,0 +1,99 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  work: CollectionEntry<'works'>;
+  index?: number;
+}
+
+const { work, index = 0 } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const delayClass = `rise-delay-${Math.min(index + 1, 3)}`;
+---
+
+<article class={`work-item rise ${delayClass}`}>
+  <div class="meta">
+    <span class="index">{String(index + 1).padStart(2, '0')}</span>
+    <div class="tags">
+      {work.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+  </div>
+  <h3>
+    <a href={`${base}works/${work.id}/`}>{work.data.title}</a>
+  </h3>
+  <p>{work.data.summary}</p>
+  <div class="tech">
+    {work.data.tech.slice(0, 4).map((t) => <span>{t}</span>)}
+  </div>
+</article>
+
+<style>
+  .work-item {
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .work-item:first-child {
+    border-top: 1px solid var(--line);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .index {
+    font-family: var(--font-display);
+    color: var(--accent);
+    font-size: 0.95rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  h3 {
+    margin: 0 0 0.45rem;
+    font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+  }
+
+  h3 a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  h3 a:hover {
+    color: var(--accent);
+  }
+
+  p {
+    margin: 0 0 0.85rem;
+    color: var(--ink-muted);
+    max-width: 40rem;
+  }
+
+  .tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 1rem;
+    color: var(--ink-muted);
+    font-size: 0.88rem;
+  }
+
+  .tech span::before {
+    content: '';
+    display: inline-block;
+    width: 0.35rem;
+    height: 0.35rem;
+    margin-right: 0.4rem;
+    border-radius: 50%;
+    background: var(--accent);
+    vertical-align: middle;
+  }
+</style>
