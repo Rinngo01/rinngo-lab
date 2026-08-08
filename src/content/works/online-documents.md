@@ -5,7 +5,7 @@ tags: [全栈, 协作文档, AI 辅助]
 tech: [Vue 3, TipTap, Yjs, Element Plus, Vite]
 repo: https://github.com/Rinngo01/online-doc-collab
 featured: true
-order: 1
+order: 2
 date: 2026-06-01
 ---
 

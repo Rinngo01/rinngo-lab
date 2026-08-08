@@ -6,7 +6,7 @@ tech: [Vue 3, Ant Design Vue, ECharts, Pinia, Vite]
 repo: https://github.com/Rinngo01/work-order-dashboard
 demo: https://rinngo01.github.io/work-order-dashboard/
 featured: true
-order: 2
+order: 3
 date: 2026-07-15
 ---
 

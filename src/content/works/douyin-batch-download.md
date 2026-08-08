@@ -5,7 +5,7 @@ tags: [工具, 自动化, Playwright]
 tech: [Python, Playwright, CLI]
 repo: https://github.com/Rinngo01/douyin-video-batch-download
 featured: true
-order: 3
+order: 4
 date: 2026-08-01
 ---
 
